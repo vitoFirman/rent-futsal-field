@@ -1,0 +1,24 @@
+networks:
+  officenet:
+    external: true
+services:
+  app:
+    image: 'vitofirman/php8.2-apache:latest'
+    container_name: rent-futsal-field
+    working_dir: /var/www/html
+    stdin_open: true
+    tty: true
+    networks:
+      - officenet
+    ports:
+      - 3001:80
+      - 3000:3000
+    volumes:
+      - ./src:/var/www/html
+      - ./docker-configs/apache.conf:/etc/apache2/sites-available/000-default.conf
+      - ./docker-configs/supervisor.conf:/etc/supervisor/conf.d/rent-futsal-field.conf
+      - ./isolated_folders:/tmp/audits
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    environment:
+      - USE_ZEND_ALLOC=0
