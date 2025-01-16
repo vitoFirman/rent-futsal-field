@@ -2,5 +2,5 @@
 
 demo in https://futsal-rent-panel.vito.web.id
 
-email: admin@gmail.com
-password: punt3n123
+- email: admin@gmail.com
+- password: punt3n123
